@@ -36,6 +36,12 @@ export const htmlTemplate = async ({
   title,
   bodyEntry,
 }: TemplateOpts): Promise<string> => {
+  if (title === "config") {
+    return `{
+  "javascript_body_urls": ["${files.js[0].fileName}"],
+  "stylesheet_head_urls": ["${files.css[0].fileName}"]
+}`;
+  }
   const scripts = (files.js || [])
     .map(({ fileName }) => {
       const attrs = makeHtmlAttributes(attributes.script);
